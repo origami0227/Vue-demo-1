@@ -1,8 +1,11 @@
 <template>
-  <div class="red">
-    {{ n }}
+  <div>
+    <div class="red">
+      demo
+    </div>
+
   </div>
-  <button @click="add">+1</button><!--写在页面里的视图-->
+
 </template>
 
 <script>
@@ -15,14 +18,14 @@ export default {
   },
   methods: {
     add() {
-      this.n+=1
+      this.n += 1
     }
   }
 }
 </script>
 
 <style scoped>
-.red{
+.red {
   color: red;
 }
 </style>

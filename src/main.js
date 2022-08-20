@@ -1,21 +1,45 @@
 // import Vue from 'vue'
 // import App from './App.vue'
 //
-// Vue.config.productionTip = false
+const Vue = window.Vue
+Vue.config.productionTip = false
 //
+import Demo from './Demo.vue'
 
-new Vue({
-    el: '#app',
-    render(h) {
-        return h('div', [this.n, h('button', {on: {click: this.add}}, '+1')])
+Vue.component('Demo2', {
+    template:`
+    <div>demo2</div>   
+    `
+})
+const vm = new Vue({
+    components: {
+        Origami: Demo
     },
-    data: {
-        n: 0
+    data() {
+        return {
+            n: 0,
+            array: [1, 2, 3, 4, 5, 6, 7, 8]
+        }
     },
+    template: `
+      <div>
+      <div class="red">
+        {{ n }}
+      </div>
+      <button @click="add">+1</button><!--写在页面里的视图-->
+      <Origami/>
+      <Demo2/>
+      <hr>
+      {{ filter() }}<!--求数组的偶数-->
+      </div>
+    `,
     methods: {
         add() {
-            return this.n += 1
+            this.n += 1
+        },
+        filter() {
+            return this.array.filter(i => i % 2 === 0)
         }
     }
 })
-console.log(window.Vue)
+vm.$mount('#app')
